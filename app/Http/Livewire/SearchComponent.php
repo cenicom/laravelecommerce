@@ -6,15 +6,17 @@ use App\Models\Category;
 use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Gloudemans\Shoppingcart\Facades\Cart;
-class ShopComponent extends Component
+use Cart;
+
+class SearchComponent extends Component
 {
     use WithPagination;
 
     public $sorting;
     public $pagesize;
-    public $min_price;
-    public $max_price;
+    public $search;
+    public $product_cat;
+    public $product_cat_id;
 
     public function mount()
     {
@@ -23,8 +25,12 @@ class ShopComponent extends Component
 
         $this->pagesize = 12;
 
-        $this->min_price = 1;
-        $this->max_price = 1000;
+        $this->fill(request()
+        ->only(
+            'search',
+            'product_cat',
+            'product_cat_id'
+        ));
     }
 
     public function store($product_id,$product_name,$product_price)
@@ -36,11 +42,11 @@ class ShopComponent extends Component
             1,
             $product_price
         )
-        ->associate(
+        ->associte(
             'App\Models\Product'
         );
 
-        session()->flash('success_message', 'Item Agregado al Carrito');
+        session()->flash('success_message','Item Added In Cart');
 
         return redirect()->route('product.cart');
     }
@@ -48,39 +54,32 @@ class ShopComponent extends Component
     public function render()
     {
         if($this->sorting == 'date'){
-            $products = Product::whereBetween('regular_price',[
-                $this->min_price,
-                $this->max_price
-            ])
+            $products = Product::where('name','like','%'.$this->search .'%')
+            ->where('category_id','like','%'.$this->product_cat_id)
             ->orderBy(
                 'created_at',
                 'DESC'
             )
             ->paginate($this->pagesize);
-
         }else if($this->sorting == 'price'){
-            $products = Product::whereBetween('regular_price',[
-                $this->min_price,
-                $this->max_price
-            ])
+            $products = Product::where('name','like','%'.$this->search .'%')
+            ->where('category_id','like','%'.$this->product_cat_id)
             ->orderBy(
                 'regular_price',
                 'ASC'
             )
             ->paginate($this->pagesize);
-
         }else if($this->sorting == 'price-desc'){
-            $products = Product::orderBy(
+            $products = Product::where('name','like','%'.$this->search .'%')
+            ->where('category_id','like','%'.$this->product_cat_id)
+            ->orderBy(
                 'regular_price',
                 'DESC'
             )
             ->paginate($this->pagesize);
-
         }else{
-            $products = Product::whereBetween('regular_price',[
-                $this->min_price,
-                $this->max_price
-            ])
+            $products = Product::where('name','like','%'.$this->search .'%')
+            ->where('category_id','like','%'.$this->product_cat_id)
             ->paginate($this->pagesize);
         }
 
@@ -90,8 +89,8 @@ class ShopComponent extends Component
         ->limit(4)
         ->get();
 
-        return view('livewire.shop-component',[
-            'products' => $products,
+        return view('livewire.search-component',[
+            'products'=>$products,
             'categories' => $categories,
             'popular_products' => $popular_products
         ])

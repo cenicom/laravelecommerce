@@ -227,19 +227,19 @@
                     <div class="widget-content">
                         <ul class="products">
                             @foreach ($popular_products as $p_product )
-                            <li class="product-item">
-                                <div class="product product-widget-style">
-                                    <div class="thumbnnail">
-                                        <a href="{{ route('product.details',['slug' => $product->slug]) }}" title="{{ $p_product->name }}">
-                                            <figure><img src="{{ asset('assets/images/products') }}/{{ $p_product->image }}" alt=""></figure>
-                                        </a>
+                                <li class="product-item">
+                                    <div class="product product-widget-style">
+                                        <div class="thumbnnail">
+                                            <a href="{{ route('product.details',['slug' => $product->slug]) }}" title="{{ $p_product->name }}">
+                                                <figure><img src="{{ asset('assets/images/products') }}/{{ $p_product->image }}" alt=""></figure>
+                                            </a>
+                                        </div>
+                                        <div class="product-info">
+                                            <a href="{{ route('product.details',['slug' => $product->slug]) }}" class="product-name"><span>{{ $p_product->name }}...</span></a>
+                                            <div class="wrap-price"><span class="product-price">${{ $p_product->regular_price }}</span></div>
+                                        </div>
                                     </div>
-                                    <div class="product-info">
-                                        <a href="{{ route('product.details',['slug' => $product->slug]) }}" class="product-name"><span>{{ $p_product->name }}...</span></a>
-                                        <div class="wrap-price"><span class="product-price">${{ $p_product->regular_price }}</span></div>
-                                    </div>
-                                </div>
-                            </li>
+                                </li>
                             @endforeach
                         </ul>
                     </div>
