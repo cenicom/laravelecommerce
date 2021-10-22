@@ -76,10 +76,10 @@
                                                     <li class="menu-item" >
                                                         <a title="Dashboard" href="{{ route('admin.dashboard') }}">Dashboard</a>
                                                     </li>
-                                                   {{--  <li class="menu-item">
-                                                        <a title="Categories" href="{{ route('admin.categories') }}">Categories</a>
+                                                   <li class="menu-item">
+                                                        <a title="Categories" href="{{ route('admin.categories') }}">Categorias</a>
                                                     </li>
-                                                    <li class="menu-item">
+                                                    {{-- <li class="menu-item">
                                                         <a title="Products" href="{{ route('admin.products') }}">All Products</a>
                                                     </li>
                                                     <li class="menu-item">
