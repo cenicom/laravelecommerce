@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Inicio</title>
+	<title>Home</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon.ico') }}">
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,700,700italic,900,900italic&amp;subset=latin,latin-ext" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Open%20Sans:300,400,400italic,600,600italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet">
@@ -16,7 +16,11 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/chosen.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/color-01.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.0/nouislider.css" integrity="sha512-MKxcSu/LDtbIYHBNAWUQwfB3iVoG9xeMCm32QV5hZ/9lFaQZJVaXfz9aFa0IZExWzCpm7OWvp9zq9gVip/nLMg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @livewireStyles
 </head>
 <body class="home-page home-01 ">
@@ -38,7 +42,8 @@
 						<div class="topbar-menu left-menu">
 							<ul>
 								<li class="menu-item" >
-									<a title="Hotline: (+123) 456 789" href="#" ><span class="icon label-before fa fa-mobile"></span>Hotline: (+123) 456 789</a>
+									<a title="Callcenter: (+57) 313 353 2295" href="#" >
+                                        <span class="icon label-before fa fa-mobile"></span>Callcenter: (+57) 313 353 2295</a>
 								</li>
 							</ul>
 						</div>
@@ -76,16 +81,16 @@
                                                     <li class="menu-item" >
                                                         <a title="Dashboard" href="{{ route('admin.dashboard') }}">Dashboard</a>
                                                     </li>
-                                                   <li class="menu-item">
+                                                    <li class="menu-item">
                                                         <a title="Categories" href="{{ route('admin.categories') }}">Categorias</a>
                                                     </li>
-                                                   <li class="menu-item">
+                                                    <li class="menu-item">
                                                         <a title="Products" href="{{ route('admin.products') }}">Productos</a>
                                                     </li>
-                                                    {{-- <li class="menu-item">
-                                                        <a title="Manage Home Slider" href="{{ route('admin.homeslider') }}">Manage Home Slider</a>
-                                                    </li>
                                                     <li class="menu-item">
+                                                        <a title="Manage Home Slider" href="{{ route('admin.homeslider') }}">Home Slider</a>
+                                                    </li>
+                                                   {{--  <li class="menu-item">
                                                         <a title="Manage Home Categories" href="{{ route('admin.homecategories') }}">Manage Home Categories</a>
                                                     </li>
                                                     <li class="menu-item">
@@ -124,14 +129,16 @@
 						</div>
 					</div>
 				</div>
+
 				<div class="container">
 					<div class="mid-section main-info-area">
+
 						<div class="wrap-logo-top left-section">
 							<a href="/" class="link-to-home">
                                 <img src="{{ asset('assets/images/logo-top-1.png') }}" alt="mercado">
                             </a>
 						</div>
-						@livewire('header-search-component')
+                        @livewire('header-search-component')
 						<div class="wrap-icon right-section">
 							<div class="wrap-icon-section wishlist">
 								<a href="#" class="link-direction">
@@ -149,7 +156,7 @@
                                         @if (Cart::count() > 0)
                                             <span class="index">{{ Cart::count() }} items</span>
                                         @endif
-										<span class="title">CARRITO</span>
+										<span class="title">CART</span>
 									</div>
 								</a>
 							</div>
@@ -161,11 +168,12 @@
 								</a>
 							</div>
 						</div>
+
 					</div>
 				</div>
 
 				<div class="nav-section header-sticky">
-					<div class="header-nav-section">
+					{{-- <div class="header-nav-section">
 						<div class="container">
 							<ul class="nav menu-nav clone-main-menu" id="mercado_haead_menu" data-menuname="Sale Info" >
 								<li class="menu-item"><a href="#" class="link-term">Weekly Featured</a><span class="nav-label hot-label">hot</span></li>
@@ -175,13 +183,13 @@
 								<li class="menu-item"><a href="#" class="link-term">Top rated items</a><span class="nav-label hot-label">hot</span></li>
 							</ul>
 						</div>
-					</div>
+					</div> --}}
 
 					<div class="primary-nav-section">
 						<div class="container">
 							<ul class="nav primary clone-main-menu" id="mercado_main" data-menuname="Main menu" >
 								<li class="menu-item home-icon">
-									<a href="index.html" class="link-term mercado-item-title"><i class="fa fa-home" aria-hidden="true"></i></a>
+									<a href="/" class="link-term mercado-item-title"><i class="fa fa-home" aria-hidden="true"></i></a>
 								</li>
 								<li class="menu-item">
 									<a href="about-us.html" class="link-term mercado-item-title">About Us</a>
@@ -193,7 +201,7 @@
 									<a href="/cart" class="link-term mercado-item-title">Carrito</a>
 								</li>
 								<li class="menu-item">
-									<a href="/checkout" class="link-term mercado-item-title">Checkout</a>
+									<a href="/checkout" class="link-term mercado-item-title">Registrarse</a>
 								</li>
 								<li class="menu-item">
 									<a href="contact-us.html" class="link-term mercado-item-title">Contact Us</a>
@@ -378,21 +386,8 @@
 								<div class="item-content">
 									<div class="wrap-list-item apps-list">
 										<ul>
-											<li>
-                                                <a href="#" class="link-to-item" title="our application on apple store">
-                                                    <figure>
-                                                        <img src="{{ asset('assets/images/brands/apple-store.png') }}" alt="apple store" width="128" height="36">
-                                                    </figure>
-                                                </a>
-                                            </li>
-											<li>
-                                                <a href="#" class="link-to-item" title="our application on google play store">
-                                                    <figure>
-                                                        <img src="{{ asset('assets/images/brands/google-play-store.png') }}" alt="google play store" width="128"
-                                                        height="36">
-                                                    </figure>
-                                                </a>
-                                            </li>
+											<li><a href="#" class="link-to-item" title="our application on apple store"><figure><img src="{{ asset('assets/images/brands/apple-store.png') }}" alt="apple store" width="128" height="36"></figure></a></li>
+											<li><a href="#" class="link-to-item" title="our application on google play store"><figure><img src="{{ asset('assets/images/brands/google-play-store.png') }}" alt="google play store" width="128" height="36"></figure></a></li>
 										</ul>
 									</div>
 								</div>
@@ -484,7 +479,20 @@
 	<script src="{{ asset('assets/js/jquery.countdown.min.js') }}"></script>
 	<script src="{{ asset('assets/js/jquery.sticky.js') }}"></script>
 	<script src="{{ asset('assets/js/functions.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-    @livewireScripts
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.0/nouislider.min.js" integrity="sha512-ZKqmaRVpwWCw7S7mEjC89jDdWRD/oMS0mlfH96mO0u3wrPYoN+lXmqvyptH4P9mY6zkoPTSy5U2SwKVXRY5tYQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+	<script src="https://cdn.tiny.cloud/1/ox5e7ymu1b3pdru87ld6bwv9reycgyzxm5y7wp5biea2453w/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+
+	@livewireScripts
+
+    @stack('scripts')
+
 </body>
 </html>
