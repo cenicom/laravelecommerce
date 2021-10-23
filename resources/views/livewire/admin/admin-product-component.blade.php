@@ -33,7 +33,7 @@
                                     <th>Imagen</th>
                                     <th>Name</th>
                                     <th>Stock</th>
-                                    <th>Precio</th>
+                                    <th>Precio Regular</th>
                                     <th>Precio Venta</th>
                                     <th>Categoria</th>
                                     <th>Fecha</th>
