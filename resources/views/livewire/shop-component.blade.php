@@ -93,7 +93,7 @@
                                         </a>
                                         <div class="product-wish">
                                             @if ($witems->contains($product->id))
-                                                <a href="#">
+                                                <a href="#" wire:click.prevent="removeFromWishList({{ $product->id }})">
                                                     <i class="fa fa-heart fill-heart"></i>
                                                 </a>
                                             @else

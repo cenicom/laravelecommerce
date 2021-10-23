@@ -58,6 +58,28 @@ class ShopComponent extends Component
         ->associate(
             'App\Models\Product'
         );
+
+        $this->emitTo(
+            'wishlist-count-component',
+            'refreshComponent'
+        );
+    }
+
+    public function removeFromWishList($product_id)
+    {
+        # code...
+        foreach(Cart::instance('wishlist')->content() as $witem){
+            if($witem->id == $product_id){
+                Cart::instance('wishlist')->remove($witem->rowId);
+
+                $this->emitTo(
+                    'wishlist-count-component',
+                    'refreshComponent'
+                );
+
+                return;
+            }
+        }
     }
 
     public function render()
