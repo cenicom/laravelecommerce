@@ -52,14 +52,12 @@
                                         <span class="product-price">${{ $item->model->regular_price }}</span>
                                     </div>
                                     <a href="#" class="btn add-to-cart"
-                                        wire:click.prevent="store(
-                                            {{ $item->model->model->id }},
-                                            '{{ $item->model->model->name }}',
-                                            {{ $item->model->model->regular_price }})">
-                                        Agregar al Carrito
+                                        wire:click.prevent="moveFromWishListToCart(
+                                            {{ $item->rowId }})">
+                                        Mover al Carrito
                                     </a>
                                     <div class="product-wish">
-                                            <a href="#" wire:click.prevent="removeFromWishList({{ $item->model->id }})">
+                                            <a href="#" wire:click.prevent="removeFromWishList('{{ $item->model->id }}')">
                                                 <i class="fa fa-heart fill-heart"></i>
                                             </a>
                                     </div>

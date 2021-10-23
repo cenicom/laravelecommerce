@@ -10,11 +10,28 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 class DetailsComponent extends Component
 {
     public $slug;
+    public $qty;
 
     public function mount($slug)
     {
         # code...
         $this->slug = $slug;
+
+        $this->qty = 1;
+    }
+
+    public function increaseQuantity()
+    {
+        # code...
+        $this->qty++;
+    }
+
+    public function decreaseQuantity()
+    {
+        # code...
+        if($this->qty > 1){
+            $this->qty--;
+        }
     }
 
     public function store($product_id,$product_name,$product_price)
@@ -23,7 +40,7 @@ class DetailsComponent extends Component
         Cart::add(
             $product_id,
             $product_name,
-            1,
+            $this->qty,
             $product_price
         )
         ->associate(
