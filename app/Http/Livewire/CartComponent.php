@@ -60,6 +60,66 @@ class CartComponent extends Component
         );
     }
 
+    public function switchToSaveForLater($rowId)
+    {
+        # code...
+        $item = Cart::instance('cart')->get($rowId);
+
+        Cart::instance('cart')->remove($rowId);
+
+        Cart::instance('saveForLater')
+        ->add(
+            $item->id,
+            $item->name,
+            1,
+            $item->price
+        )
+        ->associate(
+            'App\Models\Product'
+        );
+
+        $this->emitTo(
+            'cart-count-component',
+            'refreshComponent'
+        );
+
+        session()->flash('success_message','Item Ha Sido Grabado para Más Tarde');
+    }
+
+    public function moveToCart($rowId)
+    {
+        # code...
+        $item = Cart::instance('saveForLater')->get($rowId);
+
+        Cart::instance('saveForLater')->remove($rowId);
+
+        Cart::instance('cart')
+        ->add(
+            $item->id,
+            $item->name,
+            1,
+            $item->price
+        )
+        ->associate(
+            'App\Models\Product'
+        );
+
+        $this->emitTo(
+            'cart-count-component',
+            'refreshComponent'
+        );
+
+        session()->flash('s_success_message','Item Ha Sido Movido al Carrito');
+    }
+
+    public function deleteFromSaveForLater($rowId)
+    {
+        # code...
+        Cart::instance('saveForLater')->remove($rowId);
+
+        session()->flash('s_success_message','Item Ha Sido Eliminado del Carrito');
+    }
+
     public function render()
     {
         return view('livewire.cart-component')

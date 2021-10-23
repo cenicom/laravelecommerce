@@ -38,6 +38,9 @@
                                         <a class="btn btn-reduce" href="#"
                                             wire:click.prevent="decreaseQuantity('{{ $item->rowId }}')"></a>
                                     </div>
+                                    <p class="text-center">
+                                        <a href="#" wire:click.prevent="switchToSaveForLater({{ $item->rowId }})">Guardar para Más Adelante...</a>
+                                    </p>
                                 </div>
                                 <div class="price-field sub-total">
                                     <p class="price">${{ $item->subtotal }}</p></div>
@@ -82,6 +85,59 @@
                     <a class="btn btn-clear" href="#" wire:click.prevent="destroyAll()">Eliminar Todos los Items</a>
                     <a class="btn btn-update" href="#">Actualizar Todo</a>
                 </div>
+            </div>
+            <div class="wrap-iten-in-cart">
+                <h3 class="title-box" style="border-bottom: 1px solid; padding-botton;15px">
+                    {{ Cart::instance('saveForLater')->count() }} item()s Grabado para Más Tarde</h3>
+                @if (Session::has('s_success_message'))
+                    <div class="alter alert-success">
+                        <strong>Success</strong> {{ Session::get('success_message') }}
+                    </div>
+                @endif
+                @if (Cart::instance('saveForLater')->count() > 0 )
+                    <h3 class="box-title">Nombre del Producto</h3>
+                    <ul class="products-cart">
+                        @foreach (Cart::instance('saveForLater')->content() as $item )
+                            <li class="pr-cart-item">
+                                <div class="product-image">
+                                    <figure>
+                                        <img src="{{ asset('assets/images/products') }}/{{ $item->model->image }}" alt="{{ $item->model->name }}">
+                                    </figure>
+                                </div>
+                                <div class="product-name">
+                                    <a class="link-to-product"
+                                        href="{{ route('product.details',['slug'=>$item->model->slug]) }}">{{ $item->model->name }}</a>
+                                </div>
+                                <div class="price-field produtc-price">
+                                    <p class="price">${{ $item->model->regular_price }}</p>
+                                </div>
+                                <div class="quantity">
+                                    <div class="quantity-input">
+                                        <input type="text" name="product-quatity" value="{{ $item->qty }}" data-max="120" pattern="[0-9]*" >
+                                        <a class="btn btn-increase" href="#"
+                                            wire:click.prevent="increaseQuantity('{{ $item->rowId }}')"></a>
+                                        <a class="btn btn-reduce" href="#"
+                                            wire:click.prevent="decreaseQuantity('{{ $item->rowId }}')"></a>
+                                    </div>
+                                    <p class="text-center">
+                                        <a href="#" wire:click.prevent="moveToCart('{{ $item->rowId }}')">
+                                            Mover al Carrito...
+                                        </a>
+                                    </p>
+                                </div>
+                                <div class="delete">
+                                    <a href="#" wire:click.prevent="deleteFromSaveForLater('{{ $item->rowId }}')"
+                                        class="btn btn-danger" title="">
+                                        <span>Eliminar Elementos</span>
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+                @else
+                    <p>No Hay Productos Agregados para Ser Grabados más Tarde...</p>
+                @endif
             </div>
 
             <div class="wrap-show-advance-info-box style-1 box-in-site">
