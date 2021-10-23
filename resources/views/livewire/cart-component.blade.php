@@ -13,10 +13,10 @@
                         <strong>Success</strong> {{ Session::get('success_message') }}
                     </div>
                 @endif
-                @if (Cart::count() > 0 )
+                @if (Cart::instance('cart')->count() > 0 )
                     <h3 class="box-title">Nombre del Producto</h3>
                     <ul class="products-cart">
-                        @foreach (Cart::content() as $item )
+                        @foreach (Cart::instance('cart')->content() as $item )
                             <li class="pr-cart-item">
                                 <div class="product-image">
                                     <figure>
