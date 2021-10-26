@@ -51,7 +51,7 @@ class CartComponent extends Component
                 '>=',
                 Carbon::today())
             ->where(
-                'cart_valud',
+                'cart_value',
                 '<=',
                 Cart::instance('cart')
                 ->subtotal()
