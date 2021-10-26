@@ -98,6 +98,9 @@
                                                         <a title="Sale Settings" href="{{ route('admin.sale') }}">Sale Settings</a>
                                                     </li>
                                                     <li class="menu-item">
+                                                        <a title="All Coupon" href="{{ route('admin.coupons') }}">All Coupon</a>
+                                                    </li>
+                                                    <li class="menu-item">
                                                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                                                     </li>
                                                     <form id="logout-form" method="POST" action="{{ route('logout') }}">
@@ -162,8 +165,8 @@
 								<li class="menu-item"><a href="#" class="link-term">Weekly Featured</a><span class="nav-label hot-label">hot</span></li>
 								<li class="menu-item"><a href="#" class="link-term">Hot Sale items</a><span class="nav-label hot-label">hot</span></li>
 								<li class="menu-item"><a href="#" class="link-term">Top new items</a><span class="nav-label hot-label">hot</span></li>
-								<li class="menu-item"><a href="#" class="link-term">Top Selling</a><span class="nav-label hot-label">hot</span></li>
 								<li class="menu-item"><a href="#" class="link-term">Top rated items</a><span class="nav-label hot-label">hot</span></li>
+                                <li class="menu-item"><a href="#" class="link-term">Top Selling</a><span class="nav-label hot-label">hot</span></li>
 							</ul>
 						</div>
 					</div> --}}
