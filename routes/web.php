@@ -24,6 +24,7 @@ use App\Http\Livewire\Admin\AdminAddHomeSliderComponent;
 use App\Http\Livewire\Admin\AdminCouponsComponent;
 use App\Http\Livewire\Admin\AdminEditCouponComponent;
 use App\Http\Livewire\Admin\AdminEditHomeSliderComponent;
+use App\Http\Livewire\ThankyouComponent;
 use App\Http\Livewire\WishlistComponent;
 
 /*
@@ -57,6 +58,9 @@ Route::get('/search', SearchComponent::class)
 
 Route::get('/wishlist', WishlistComponent::class)
 ->name('product.wishlist');
+
+Route::get('thank-you', ThankyouComponent::class)
+->name('thankyou');
 
 
 /* Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
